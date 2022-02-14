@@ -44,8 +44,8 @@
 } */
 
 canvas {
-  border: 1px dotted red;
-  min-height: 150px;
+  padding: 10px 30px;
+  min-height: 450px;
   ;
 }
 
