@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import useCountData from './hooks/useCountData';
+import CountChart from './Chart';
+import { Candidate, Stage } from './types';
 
 function App() {
+  const { data, setPostId } = useCountData();
+
+  // useEffect(() => {
+  //   window.addEventListener('emitClick', (e: any) => {
+  //     console.log('Click Received');
+  //     console.log(e)
+  //     console.log(e.detail)
+  //     setPostId(e.detail)
+  //   })
+  // })
+
+  console.log(data);
+
+  let candidates: Candidate[] = [];
+  let stages: Stage[] = [];
+
+  if (data) {
+    stages = data.Stages;
+    candidates = data.Candidates;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <CountChart stages={stages} candidates={candidates} /> */}
+      <CountChart />
     </div>
   );
 }
