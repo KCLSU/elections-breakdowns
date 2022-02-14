@@ -32,7 +32,26 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+/* body {
+  background: #1D1F20;
+  padding: 16px;
+} */
+
+canvas {
+  border: 1px dotted red;
+  min-height: 150px;
+  ;
+}
+
+/* .chart-container {
+  position: relative;
+  margin: auto;
+  height: auto;
+  width: 100%;
+} */

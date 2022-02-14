@@ -28,8 +28,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <CountChart stages={stages} candidates={candidates} /> */}
-      <CountChart />
+      <div className="chart-container">
+        {/* <CountChart stages={stages} candidates={candidates} /> */}
+        <CountChart />
+      </div>
     </div>
   );
 }

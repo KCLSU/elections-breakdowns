@@ -121,8 +121,10 @@ export const options = {
   elements: {
     bar: {
       borderWidth: 2,
+      barThickness: 'flex',
     },
   },
+  maintainAspectRatio: false,
   responsive: true,
   plugins: {
     title: {
@@ -300,6 +302,10 @@ const CountChart: React.FC = () => {
         axis: 'y',
         data: stageData,
         borderColor: 'rgb(255, 99, 132)',
+        barPercentage: 1,
+        barThickness: 30,
+        //maxBarThickness: 50,
+        //minBarLength: 30,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 159, 64, 0.2)',
