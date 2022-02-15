@@ -21,7 +21,7 @@ function App() {
       Number: 1,
       TotalActiveVote: 6,
       NonTransferableDifference: 0,
-      Elected: [96],
+      Elected: [],
       Excluded: [],
       VoteTotals: [
         {
