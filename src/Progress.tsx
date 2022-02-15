@@ -9,7 +9,7 @@ type ProgressProps = {
 
 const Progress: React.FC<ProgressProps> = ({ stages }) => {
 
-    const candidateId = 14;
+    const candidateId = 96;
 
     const excludedStageIndex = stages.findIndex(stages => stages.Excluded.includes(candidateId));
     const winningCandidate = false;
@@ -17,7 +17,13 @@ const Progress: React.FC<ProgressProps> = ({ stages }) => {
     const finalStage = excludedStageIndex > 0 ? excludedStageIndex + 1 : stages.length;
 
     console.log({ finalStage, excludedStageIndex });
-    console.log(finalStage / stages.length * 100)
+    console.log(finalStage / stages.length * 100);
+
+    const handleStageClick = (vote: number) => {
+        console.log('CLICKED');
+        console.log(vote)
+    }
+
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '15px' }}>
@@ -38,10 +44,12 @@ const Progress: React.FC<ProgressProps> = ({ stages }) => {
 
                     {stages.map(stage => {
 
+                        const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)
+
                         return (
                             <Step transition="scale">
                                 {({ accomplished }) => (
-                                    <div style={{ background: '#502767', color: 'white' }}>
+                                    <div onClick={() => handleStageClick(candidate?.Vote || 0)} style={{ background: '#502767', color: 'white' }}>
                                         {stage.Number}
                                     </div>
                                 )}
