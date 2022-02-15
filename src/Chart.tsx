@@ -37,10 +37,10 @@ const CountChart: React.FC<CountChartProps> = ({ stages, candidates, labels }) =
 
     return allStages.map((stage: Stage) => {
       const stageData = stage.VoteTotals.map((vtotal) => {
-
-        if (stage.Excluded.includes(vtotal.CandidateId)) return 0;
-        return 1;
-      });
+        return vtotal.Vote
+        // if (vtotal.Vote < 0) return 0;
+        // else return 1;
+      })
 
       const bar = {
         label: `Stage ${stage.Number}`,
