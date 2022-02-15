@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import useCountData from './hooks/useCountData';
 import CountChart from './Chart';
 import { Candidate, Stage } from './types';
+import Progress from './Progress';
+
 
 function App() {
   const { data, setPostId } = useCountData();
@@ -123,10 +125,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="chart-container">
+      <Progress stages={stages} />
+      {/* <div className="chart-container">
         <CountChart stages={stages} candidates={candidates} labels={labels} />
 
-      </div>
+      </div> */}
     </div>
   );
 }
