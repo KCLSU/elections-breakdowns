@@ -57,9 +57,24 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId }) => {
 
                         return (
                             <Step transition="scale">
-                                {({ accomplished }) => (
-                                    <StagePoint stageNumber={stage.Number} voteCount={candidate?.Vote} />
-                                )}
+                                {({ accomplished }) => {
+                                    const elected = stage.Elected.find(id => id === candidate.CandidateId);
+                                    const excluded = stage.Excluded.find(id => id === candidate.CandidateId);
+                                    return (
+                                        <>
+                                            <StagePoint
+                                                stageNumber={stage.Number}
+                                                voteCount={candidate?.Vote}
+                                                voteTotal={candidate.Total}
+                                                nonTransferrable={stage.NonTransferableDifference}
+                                                activeVote={stage.TotalActiveVote}
+                                                elected={!!elected}
+                                                excluded={!!excluded}
+                                            />
+                                            {elected && <p style={{ fontSize: '2rem' }}>🏆</p>}
+                                        </>
+                                    )
+                                }}
                             </Step>
                         )
                     })}
