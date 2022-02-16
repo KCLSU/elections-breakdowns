@@ -35,9 +35,9 @@ const StageVotes: React.FC<StageVotesProps> = ({ votes, total, nonTransferrable,
             <Small>Non-transferrable: <span>{nonTransferrable}</span></Small>
             <Small>Total Active Vote: <span>{activeVote}</span></Small>
             {elected && <p>🏆 Candidate elected!</p>}
-            {excluded && <p>⛔ Votes do not meet required stage quota.</p>}
+            {excluded && <p>⛔ Does not meet required quota.</p>}
         </div>
     )
 }
 
-export default StageVotes
+export default StageVotes;

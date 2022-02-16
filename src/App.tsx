@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Modal okText="Back to Results" title="Elections Post Breakdown" width="90%" visible={true} onOk={() => console.log('okay')} onCancel={() => console.log('cancel')}>
         <Header />
-        {data.Candidates.map(obj => <Progress stages={data.Stages} candidateId={obj.Id} />)}
+        {data.Candidates.map(obj => <Progress stages={data.Stages} candidateId={obj.Id} candidateName={obj.Name} />)}
       </Modal>
     </div>
   );

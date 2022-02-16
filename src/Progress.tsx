@@ -9,6 +9,7 @@ import styled from "styled-components";
 type ProgressProps = {
     stages: Stage[];
     candidateId: number;
+    candidateName: string;
 };
 
 const Container = styled.div`
@@ -24,7 +25,7 @@ const Bar = styled.div`
 `
 
 
-const Progress: React.FC<ProgressProps> = ({ stages, candidateId }) => {
+const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName }) => {
 
 
     const excludedStageIndex = stages.findIndex(stages => stages.Excluded.includes(candidateId));
@@ -37,7 +38,7 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId }) => {
 
     return (
         <Container>
-            Hello
+            {candidateName}
             <Bar>
                 <ProgressBar
                     percent={finalStage / (stages.length) * 100}
