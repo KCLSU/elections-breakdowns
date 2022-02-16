@@ -1,15 +1,31 @@
+import { useState } from "react";
 import { ProgressBar, Step } from "react-step-progress-bar"
 import "react-step-progress-bar/styles.css";
 import { Stage, ChartCandidates } from './types';
+import { Popover } from 'antd';
+import StagePoint from "./StagePoint";
+import styled from "styled-components";
 
 type ProgressProps = {
     stages: Stage[];
-    candidates?: ChartCandidates;
-}
+    candidateId: number;
+};
 
-const Progress: React.FC<ProgressProps> = ({ stages }) => {
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+`
 
-    const candidateId = 96;
+const Bar = styled.div`
+    width: 100%;
+    padding: 3rem 1rem;
+`
+
+
+const Progress: React.FC<ProgressProps> = ({ stages, candidateId }) => {
+
 
     const excludedStageIndex = stages.findIndex(stages => stages.Excluded.includes(candidateId));
     const winningCandidate = false;
@@ -19,24 +35,17 @@ const Progress: React.FC<ProgressProps> = ({ stages }) => {
     console.log({ finalStage, excludedStageIndex });
     console.log(finalStage / stages.length * 100);
 
-    const handleStageClick = (vote: number) => {
-        console.log('CLICKED');
-        console.log(vote)
-    }
-
-
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '15px' }}>
+        <Container>
             Hello
-            <div style={{ padding: '4rem', width: '100%' }}>
+            <Bar>
                 <ProgressBar
-
                     percent={finalStage / (stages.length) * 100}
                     filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
                 >
                     <Step transition="scale">
                         {({ accomplished }) => (
-                            <div style={{ background: '#502767', color: 'white' }}>
+                            <div style={{ color: 'white' }}>
                                 0
                             </div>
                         )}
@@ -44,21 +53,19 @@ const Progress: React.FC<ProgressProps> = ({ stages }) => {
 
                     {stages.map(stage => {
 
-                        const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)
+                        const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)!
 
                         return (
                             <Step transition="scale">
                                 {({ accomplished }) => (
-                                    <div onClick={() => handleStageClick(candidate?.Vote || 0)} style={{ background: '#502767', color: 'white' }}>
-                                        {stage.Number}
-                                    </div>
+                                    <StagePoint stageNumber={stage.Number} voteCount={candidate?.Vote} />
                                 )}
                             </Step>
                         )
                     })}
                 </ProgressBar>
-            </div>
-        </div>
+            </Bar>
+        </Container >
     )
 };
 

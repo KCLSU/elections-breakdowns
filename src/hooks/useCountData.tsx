@@ -7,7 +7,7 @@ type UseCountDataT = {
 }
 
 const useCountData = (): UseCountDataT => {
-    const [postId, setPostId] = useState<number | null>(null);
+    const [postId, setPostId] = useState<number | null>(3778);
     const [data, setData] = useState(null)
 
     async function fetchData() {
