@@ -7,6 +7,7 @@ import Progress from './Progress';
 import { Modal } from 'antd';
 import 'antd/dist/antd.css';
 import Header from './Header';
+import Tables from './Tables';
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
     <div className="App">
       <Modal okText="Back to Results" title="Elections Post Breakdown" width="90%" visible={true} onOk={() => console.log('okay')} onCancel={() => console.log('cancel')}>
         <Header />
-        {data.Candidates.map(obj => <Progress stages={data.Stages} candidateId={obj.Id} candidateName={obj.Name} />)}
+        <Tables stages={data.Stages} />
+        {/* {data.Candidates.map(obj => <Progress stages={data.Stages} candidateId={obj.Id} candidateName={obj.Name} />)} */}
       </Modal>
     </div>
   );
