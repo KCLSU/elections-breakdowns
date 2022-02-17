@@ -1,17 +1,12 @@
-import { PageHeader, Tabs, Button, Statistic, Descriptions } from 'antd';
-
-const { TabPane } = Tabs;
+import { PageHeader, Radio, Statistic, Descriptions } from 'antd';
 
 
 
-// const Content = ({ children, extra }) => (
-//     <div className="content">
-//         <div className="main">{children}</div>
-//         <div className="extra">{extra}</div>
-//     </div>
-// );
+type HeaderProps = {
+    setView: (type: 'bars' | 'table') => void
+}
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({ setView }) => {
 
 
     const renderContent = (
@@ -36,6 +31,11 @@ const Header = () => {
         </div>
     );
 
+    const handleChangeView = (e: any) => {
+        const view = e.target.value;
+        setView(view)
+    }
+
     return (
         <PageHeader
             className="site-page-header-responsive"
@@ -44,10 +44,10 @@ const Header = () => {
             title="President (full-time, paid)"
             // subTitle="A visual representation of the vote breakdown"
             footer={
-                <Tabs defaultActiveKey="1">
-                    <TabPane tab="Details" key="1" />
-                    <TabPane tab="Rule" key="2" />
-                </Tabs>
+                <Radio.Group onChange={handleChangeView}>
+                    <Radio.Button value="bars">Bars</Radio.Button>
+                    <Radio.Button value="table">Table</Radio.Button>
+                </Radio.Group>
             }>
             <div className="content">
                 <div className="main">{renderContent}</div>
