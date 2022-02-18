@@ -42,7 +42,7 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName 
             <Bar>
                 <ProgressBar
                     percent={finalStage / (stages.length) * 100}
-                    filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+                    filledBackground="linear-gradient(to right, #fefb72, #ec6335)"
                 >
                     <Step transition="scale">
                         {({ accomplished }) => (

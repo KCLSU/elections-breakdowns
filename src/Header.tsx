@@ -39,18 +39,6 @@ const Header: React.FC<HeaderProps> = ({ setView }) => {
         </Descriptions>
     );
 
-    const extraContent = (
-        <div
-            style={{
-                display: 'flex',
-                width: 'max-content',
-                justifyContent: 'flex-end',
-            }}
-        >
-            <Statistic title="Price" value={568.08} />
-            <Statistic title="Price" value={568.08} />
-        </div>
-    );
 
     const handleChangeView = (e: any) => {
         const view = e.target.value;
@@ -65,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ setView }) => {
                 onBack={() => window.history.back()}
                 title="President (full-time, paid)"
                 extra={[
-                    <Button key="3">Elections counts explained</Button>, ,
+                    <Button key="3">Elections counts explained</Button>
                 ]}
                 // subTitle="A visual representation of the vote breakdown"
                 footer={

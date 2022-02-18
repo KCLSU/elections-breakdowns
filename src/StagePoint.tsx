@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { MouseEvent, MouseEventHandler, useState } from "react";
 import { Popover, Badge } from 'antd';
 import StageVotes from "./StageVotes";
+import styled from "styled-components";
 
 
 type StagePointProps = {
@@ -13,6 +14,32 @@ type StagePointProps = {
     excluded: boolean;
 }
 
+const ButtonPoint = styled.button`
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+    :focus-visible {
+        outline: 3px dashed #ec6335;
+    }
+`
+
+const Dot = styled(Badge)`
+    
+    .ant-scroll-number {
+        background: #502669;
+        transition: transform 0.2s ease-out;
+
+        :hover {
+            transform: scale(1.3)
+        }
+    }
+`
+
 const StagePoint: React.FC<StagePointProps> = ({ stageNumber, voteCount, voteTotal, activeVote, nonTransferrable, elected, excluded }) => {
 
     const [showToolTip, setShowToolTip] = useState(false);
@@ -21,8 +48,13 @@ const StagePoint: React.FC<StagePointProps> = ({ stageNumber, voteCount, voteTot
         setShowToolTip(visible)
     };
 
+    const handleClick = (event: MouseEvent) => {
+        event.preventDefault();
+        setShowToolTip(true)
+    }
+
     return (
-        <div onClick={() => setShowToolTip(true)} style={{ color: 'white' }}>
+        <ButtonPoint aria-label={`Show Stage${stageNumber}`} onClick={handleClick} style={{ color: 'white' }}>
             <Popover
                 title={`Stage ${stageNumber}`}
                 trigger="click"
@@ -30,10 +62,10 @@ const StagePoint: React.FC<StagePointProps> = ({ stageNumber, voteCount, voteTot
                 visible={showToolTip}
                 onVisibleChange={handleVisibleChange}
             >
-                <Badge style={{ background: 'purple' }} count={stageNumber} />
+                <Dot count={stageNumber} />
 
             </Popover>
-        </div>
+        </ButtonPoint>
     )
 };
 
