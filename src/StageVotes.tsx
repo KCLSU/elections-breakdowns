@@ -15,7 +15,7 @@ const Flex = styled.div`
     justify-content: space-between;
     align-items: center;
 `
-const Small = styled.small`
+export const Small = styled.small`
     font-size: 13px;
     display: block;
     margin: 5px 0;

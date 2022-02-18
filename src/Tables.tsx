@@ -1,10 +1,14 @@
 import { Table } from "antd";
+import { Small } from "./StageVotes";
 import { Candidate, Stage } from "./types";
+
 
 type TablesProps = {
     stages: Stage[],
     candidates: Candidate[]
 }
+
+
 
 const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
 
@@ -31,19 +35,24 @@ const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
     console.log(data)
 
     return (
-        <Table
-            dataSource={data}
-            bordered
-            size="small"
-        >
+        <>
+            <Table
+                dataSource={data}
+                bordered
+                size="small"
+            >
 
-            <Table.Column align="center" title="Stage" dataIndex="stageNumber" key="stageNumber" />
-            <Table.Column align="center" title="Total Active Vote" dataIndex="totalActiveVote" key="totalActiveVote" />
-            <Table.Column align="center" title="Non Transferrable Difference" dataIndex="nonTransferrable" key="nonTransferrable" />
-            <Table.Column align="center" title="Excluded" dataIndex="excluded" key="excluded" />
-            <Table.Column align="center" title="Elected" dataIndex="elected" key="elected" />
+                <Table.Column align="center" title="Stage" dataIndex="stageNumber" key="stageNumber" />
+                <Table.Column align="center" title="Total Active Vote" dataIndex="totalActiveVote" key="totalActiveVote" />
+                <Table.Column align="center" title="Non Transferrable Difference" dataIndex="nonTransferrable" key="nonTransferrable" />
+                <Table.Column align="center" title="Excluded" dataIndex="excluded" key="excluded" />
+                <Table.Column align="center" title="Elected" dataIndex="elected" key="elected" />
 
-        </Table>
+            </Table>
+
+            <Small>** Excluded means failing to reach the stage quota of votes. </Small>
+            <Small>** If candidates reach the final stage without being excluded, the candidates with the highest votes are elected </Small>
+        </>
     )
 }
 
