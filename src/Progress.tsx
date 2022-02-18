@@ -29,7 +29,7 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName 
 
 
     const excludedStageIndex = stages.findIndex(stages => stages.Excluded.includes(candidateId));
-    const winningCandidate = false;
+
 
     const finalStage = excludedStageIndex > 0 ? excludedStageIndex + 1 : stages.length;
 

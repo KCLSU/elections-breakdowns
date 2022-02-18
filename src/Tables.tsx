@@ -3,14 +3,22 @@ import { Candidate, Stage } from "./types";
 
 type TablesProps = {
     stages: Stage[],
-    candidates?: Candidate[]
+    candidates: Candidate[]
 }
 
 const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
 
     const data = stages.map(stage => {
-        const excluded = stage.Excluded.join(',');
-        const elected = stage.Elected.join(',');
+        //const excluded = stage.Excluded.join(',');
+        // const elected = stage.Elected.join(',');
+        const excluded = stage.Excluded.map(id => {
+            const cand = candidates.find(cand => cand.Id === id)
+            return cand?.Name
+        }).join(',')
+        const elected = stage.Elected.map(id => {
+            const cand = candidates.find(cand => cand.Id === id)
+            return cand?.Name
+        }).join(',')
         return {
             stageNumber: `Stage ${stage.Number}`,
             excluded,
