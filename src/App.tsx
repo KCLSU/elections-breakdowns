@@ -14,7 +14,6 @@ const Canvas = styled.div`
   .ant-page-header.has-footer {
     padding: 0;
   }
-
 `
 
 
@@ -23,7 +22,12 @@ function App() {
   const [visible, setVisible] = useState(true);
   const [view, setView] = useState<'table' | 'bars'>('bars');
 
-
+  useEffect(() => {
+    window.addEventListener('emitClick', (e: any) => {
+      setVisible(true);
+      setPostId(+(e.detail))
+    })
+  })
 
   let modalContent = (
     <>
