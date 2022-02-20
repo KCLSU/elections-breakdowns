@@ -1,6 +1,5 @@
 
 import Progress from "./Progress";
-import { Small } from "./StageVotes";
 import { Candidate, Stage } from "./types";
 
 type BarsProps = {

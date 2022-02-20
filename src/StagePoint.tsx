@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Popover, Badge } from 'antd';
 import StageVotes from "./StageVotes";
 import styled from "styled-components";

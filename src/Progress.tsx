@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { ProgressBar, Step } from "react-step-progress-bar"
 import "react-step-progress-bar/styles.css";
-import { Stage, ChartCandidates } from './types';
-import { Popover } from 'antd';
+import { ProgressBar, Step } from "react-step-progress-bar"
+import { Stage } from './types';
 import StagePoint from "./StagePoint";
 import styled from "styled-components";
-import { Small } from "./StageVotes";
 
 
 type ProgressProps = {
@@ -29,14 +26,8 @@ const Bar = styled.div`
 
 const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName }) => {
 
-
     const excludedStageIndex = stages.findIndex(stages => stages.Excluded.includes(candidateId));
-
-
     const finalStage = excludedStageIndex > 0 ? excludedStageIndex + 1 : stages.length;
-
-    console.log({ finalStage, excludedStageIndex });
-    console.log(finalStage / stages.length * 100);
 
     return (
         <>

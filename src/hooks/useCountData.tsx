@@ -20,6 +20,7 @@ const useCountData = (): UseCountDataT => {
 
     useEffect(() => {
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postId])
 
     return {
