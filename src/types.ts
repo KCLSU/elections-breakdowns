@@ -1,6 +1,7 @@
 export interface MSLCountResponse {
     Id: number
     Post: Post
+    TotalValidVote: number
     Places: number
     Quota: number
     Candidates: Candidate[]

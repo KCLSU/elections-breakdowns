@@ -5,6 +5,8 @@ import { Stage, ChartCandidates } from './types';
 import { Popover } from 'antd';
 import StagePoint from "./StagePoint";
 import styled from "styled-components";
+import { Small } from "./StageVotes";
+
 
 type ProgressProps = {
     stages: Stage[];
@@ -37,51 +39,53 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName 
     console.log(finalStage / stages.length * 100);
 
     return (
-        <Container>
-            {candidateName}
-            <Bar>
-                <ProgressBar
-                    percent={finalStage / (stages.length) * 100}
-                    filledBackground="linear-gradient(to right, #fefb72, #ec6335)"
-                >
-                    <Step transition="scale">
-                        {({ accomplished }) => (
-                            <div style={{ color: 'white' }}>
-                                0
-                            </div>
-                        )}
-                    </Step>
+        <>
+            <Container>
+                {candidateName}
+                <Bar>
+                    <ProgressBar
+                        percent={finalStage / (stages.length) * 100}
+                        filledBackground="linear-gradient(to right, #fefb72, #ec6335)"
+                    >
+                        <Step transition="scale">
+                            {({ accomplished }) => (
+                                <div style={{ color: 'white' }}>
+                                    0
+                                </div>
+                            )}
+                        </Step>
 
-                    {stages.map(stage => {
+                        {stages.map(stage => {
 
-                        const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)!
+                            const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)!
 
-                        return (
-                            <Step transition="scale">
-                                {({ accomplished }) => {
-                                    const elected = stage.Elected.find(id => id === candidate.CandidateId);
-                                    const excluded = stage.Excluded.find(id => id === candidate.CandidateId);
-                                    return (
-                                        <>
-                                            <StagePoint
-                                                stageNumber={stage.Number}
-                                                voteCount={candidate?.Vote}
-                                                voteTotal={candidate.Total}
-                                                nonTransferrable={stage.NonTransferableDifference}
-                                                activeVote={stage.TotalActiveVote}
-                                                elected={!!elected}
-                                                excluded={!!excluded}
-                                            />
-                                            {elected && <p style={{ fontSize: '2rem' }}>🏆</p>}
-                                        </>
-                                    )
-                                }}
-                            </Step>
-                        )
-                    })}
-                </ProgressBar>
-            </Bar>
-        </Container >
+                            return (
+                                <Step transition="scale">
+                                    {({ accomplished }) => {
+                                        const elected = stage.Elected.find(id => id === candidate.CandidateId);
+                                        const excluded = stage.Excluded.find(id => id === candidate.CandidateId);
+                                        return (
+                                            <>
+                                                <StagePoint
+                                                    stageNumber={stage.Number}
+                                                    voteCount={candidate?.Vote}
+                                                    voteTotal={candidate.Total}
+                                                    nonTransferrable={stage.NonTransferableDifference}
+                                                    activeVote={stage.TotalActiveVote}
+                                                    elected={!!elected}
+                                                    excluded={!!excluded}
+                                                />
+                                                {elected && <p style={{ fontSize: '2rem' }}>🏆</p>}
+                                            </>
+                                        )
+                                    }}
+                                </Step>
+                            )
+                        })}
+                    </ProgressBar>
+                </Bar>
+            </Container >
+        </>
     )
 };
 

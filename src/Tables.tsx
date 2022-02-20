@@ -32,7 +32,6 @@ const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
         }
     })
 
-    console.log(data)
 
     return (
         <>
