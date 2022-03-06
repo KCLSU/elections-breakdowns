@@ -44,7 +44,6 @@ function App() {
     // THIS EVENT CAN OCCUR OUTSIDE THE APPLICATION 
     window.addEventListener('emitClick', (e: any & { detail: any }) => {
       const info = JSON.parse(e.detail) as CustomeEventEmitter;
-      console.log(info);
       setVisible(true);
       setElectionId(+(info.election))
       setPostId(+(info.post));
