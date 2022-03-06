@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { Popover, Badge } from 'antd';
 import StageVotes from "./StageVotes";
 import styled from "styled-components";
@@ -53,11 +53,12 @@ const StagePoint: React.FC<StagePointProps> = ({ stageNumber, voteCount, voteTot
         setShowToolTip(true)
     }
 
+
     return (
         <ButtonPoint aria-label={`Show Stage${stageNumber}`} onClick={handleClick} style={{ color: 'white' }}>
             <Popover
                 title={`Stage ${stageNumber}`}
-                trigger="click"
+                trigger={['hover', 'click']}
                 content={<StageVotes votes={voteCount} total={voteTotal} activeVote={activeVote} nonTransferrable={nonTransferrable} elected={elected} excluded={excluded} />}
                 visible={showToolTip}
                 onVisibleChange={handleVisibleChange}

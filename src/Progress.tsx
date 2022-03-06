@@ -16,6 +16,8 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 5px;
+    min-width: 600px;
+    overflow: scroll;
 `
 
 const Bar = styled.div`
@@ -48,13 +50,15 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName 
 
                         {stages.map(stage => {
 
+                            // FIND THE CANDIDATE FOR EACH STAGE
                             const candidate = stage.VoteTotals.find(voteT => voteT.CandidateId === candidateId)!
 
                             return (
-                                <Step transition="scale">
+                                <Step transition="scale" key={`Stage${stage.Number}${candidate.CandidateId}`}>
                                     {({ accomplished }) => {
                                         const elected = stage.Elected.find(id => id === candidate.CandidateId);
                                         const excluded = stage.Excluded.find(id => id === candidate.CandidateId);
+
                                         return (
                                             <>
                                                 <StagePoint

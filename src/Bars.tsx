@@ -11,7 +11,7 @@ type BarsProps = {
 const Bars: React.FC<BarsProps> = ({ stages, candidates }) => {
     return (
         <>
-            {candidates.map((obj: Candidate) => <Progress stages={stages} candidateId={obj.Id} candidateName={obj.Name} />)}
+            {candidates.map((obj: Candidate) => <Progress key={obj.Id} stages={stages} candidateId={obj.Id} candidateName={obj.Name} />)}
         </>
     )
 };

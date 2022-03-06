@@ -1,13 +1,10 @@
 import { Table } from "antd";
-import { Small } from "./StageVotes";
 import { Candidate, Stage } from "./types";
-
 
 type TablesProps = {
     stages: Stage[],
     candidates: Candidate[]
 }
-
 
 
 const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
@@ -18,11 +15,11 @@ const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
         const excluded = stage.Excluded.map(id => {
             const cand = candidates.find(cand => cand.Id === id)
             return cand?.Name
-        }).join(',')
+        }).join(', ')
         const elected = stage.Elected.map(id => {
             const cand = candidates.find(cand => cand.Id === id)
             return cand?.Name
-        }).join(',')
+        }).join(', ')
         return {
             stageNumber: `Stage ${stage.Number}`,
             excluded,
@@ -49,8 +46,6 @@ const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
 
             </Table>
 
-            <Small>** Excluded means failing to reach the stage quota of votes. </Small>
-            <Small>** If candidates reach the final stage without being excluded, the candidates with the highest votes are elected </Small>
         </>
     )
 }
