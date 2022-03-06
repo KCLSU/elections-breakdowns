@@ -40,12 +40,12 @@ function App() {
 
 
   useEffect(() => {
-    window.addEventListener('emitClick', (e: any) => {
-      const info = e as CustomeEventEmitter;
+    window.addEventListener('emitClick', (e: any & { detail: any }) => {
+      const info = JSON.parse(e.detail) as CustomeEventEmitter;
       console.log(info);
       setVisible(true);
-      setElectionId(+(info.detail.election))
-      setPostId(+(info.detail.post));
+      setElectionId(+(info.election))
+      setPostId(+(info.post));
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
