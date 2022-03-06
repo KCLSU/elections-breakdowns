@@ -1,10 +1,30 @@
-# Getting Started with Create React App
+# KCLSU Elections Breakdowns
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a react application built with:
+- typescript
+- styled components 
+- ant design components
 
-## Available Scripts
+It consumes MSL endpoints for retrieving elections results when provided with a Post Id and an Elections Id. This is not a stand-alone website. It is to be used as a script loaded onto a webpage of the kclsu.org website.
 
-In the project directory, you can run:
+Once the compiled JS file and css style sheets have been added to the header, the html markup requires a div with id `root`.
+
+```<div id="root></div>```
+
+The script has a listener for a specific custom event. These events can be dispatched from anywhere in the window, and does not need to originate from within the react app. 
+
+The custom event must have the following structure and name, where the value of the detail property is stringified:
+
+```
+const customDetail = {
+    election: 00,  // ELECTION ID
+    post: 00 // POST ID
+};
+
+const ev = new CustomEvent('emitClick', JSON.stringify(customDetail));
+
+```
+
 
 ### `npm start`
 
@@ -28,19 +48,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
