@@ -40,10 +40,12 @@ function App() {
 
   useEffect(() => {
     window.addEventListener('emitClick', (e: any) => {
+      console.log(e);
       setVisible(true);
       setPostId(+(e.detail))
     })
-  }, [setPostId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const closeModal = () => {
     setVisible(false);
@@ -75,7 +77,7 @@ function App() {
     )
   }
 
-  if (error) return <p>Unfortunately there was an error fetching this data. Please try again later.</p>
+  if (error) modalContent = <p>Unfortunately there was an error fetching this data. Please try again later.</p>
 
   return (
     <ModalContainer>
