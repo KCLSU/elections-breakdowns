@@ -9,6 +9,7 @@ import Bars from './Bars';
 import styled from 'styled-components';
 import { Skeleton } from 'antd';
 import Definitions from './Definitions';
+import { CustomeEventEmitter } from './types';
 
 const Canvas = styled.div`
   padding: 1rem;
@@ -33,16 +34,18 @@ const ModalContainer = styled.div`
 
 
 function App() {
-  const { data, setPostId, loading, error, clearData } = useCountData();
+  const { data, setPostId, setElectionId, loading, error, clearData } = useCountData();
   const [visible, setVisible] = useState(false);
   const [view, setView] = useState<'table' | 'bars' | 'definitions'>('bars');
 
 
   useEffect(() => {
     window.addEventListener('emitClick', (e: any) => {
-      console.log(e);
+      const info = e as CustomeEventEmitter;
+      console.log(info);
       setVisible(true);
-      setPostId(+(e.detail))
+      setElectionId(+(info.detail.election))
+      setPostId(+(info.detail.post));
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

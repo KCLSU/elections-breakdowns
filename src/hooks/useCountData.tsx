@@ -3,6 +3,7 @@ import { MSLCountResponse } from "../types";
 
 type UseCountDataT = {
     setPostId: (id: number) => void;
+    setElectionId: (id: number) => void;
     clearData: () => void;
     data: MSLCountResponse | null;
     loading: boolean;
@@ -10,16 +11,17 @@ type UseCountDataT = {
 }
 
 const useCountData = (): UseCountDataT => {
+    const [electionId, setElectionId] = useState<number | null>(null);
     const [postId, setPostId] = useState<number | null>(null);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     async function fetchData() {
-        if (postId) {
+        if (postId && electionId) {
             setLoading(true);
             try {
-                const result = await (await fetch(`https://www.kclsu.org/svc/voting/elections/164/posts/${postId}/result`)).json();
+                const result = await (await fetch(`https://www.kclsu.org/svc/voting/elections/${electionId}/posts/${postId}/result`)).json();
                 if (!result) throw new Error();
                 setData(result);
                 setLoading(false);
@@ -44,6 +46,7 @@ const useCountData = (): UseCountDataT => {
 
     return {
         setPostId,
+        setElectionId,
         clearData,
         data,
         loading,

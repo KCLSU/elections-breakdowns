@@ -38,3 +38,10 @@ export interface Stage {
 export type ChartCandidates = Candidate[];
 
 export type ChartStages = Stage[];
+
+export type CustomeEventEmitter = {
+    detail: {
+        post: number;
+        election: number
+    }
+}
