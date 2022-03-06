@@ -43,7 +43,7 @@ function App() {
       setVisible(true);
       setPostId(+(e.detail))
     })
-  }, [])
+  }, [setPostId])
 
   const closeModal = () => {
     setVisible(false);
