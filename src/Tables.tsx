@@ -6,7 +6,6 @@ type TablesProps = {
     candidates: Candidate[]
 }
 
-
 const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
 
     const data = stages.map(stage => {
@@ -26,7 +25,6 @@ const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
             nonTransferrable: stage.NonTransferableDifference
         }
     })
-
 
     return (
         <>

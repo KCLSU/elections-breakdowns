@@ -11,6 +11,7 @@ type UseCountDataT = {
 }
 
 const useCountData = (): UseCountDataT => {
+
     const [electionId, setElectionId] = useState<number | null>(null);
     const [postId, setPostId] = useState<number | null>(null);
     const [data, setData] = useState(null);

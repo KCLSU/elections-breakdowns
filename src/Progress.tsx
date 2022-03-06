@@ -70,7 +70,7 @@ const Progress: React.FC<ProgressProps> = ({ stages, candidateId, candidateName 
                                                     elected={!!elected}
                                                     excluded={!!excluded}
                                                 />
-                                                {elected && <p style={{ fontSize: '2rem' }}>🏆</p>}
+                                                {elected && <p style={{ fontSize: '3rem' }}>🏆</p>}
                                             </>
                                         )
                                     }}

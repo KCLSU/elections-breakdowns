@@ -32,7 +32,6 @@ const ModalContainer = styled.div`
 
 `
 
-
 function App() {
   const { data, setPostId, setElectionId, loading, error, clearData } = useCountData();
   const [visible, setVisible] = useState(false);
@@ -40,6 +39,9 @@ function App() {
 
 
   useEffect(() => {
+
+    //LISTEN FOR A CUSTOM EVENT
+    // THIS EVENT CAN OCCUR OUTSIDE THE APPLICATION 
     window.addEventListener('emitClick', (e: any & { detail: any }) => {
       const info = JSON.parse(e.detail) as CustomeEventEmitter;
       console.log(info);
@@ -52,9 +54,11 @@ function App() {
 
   const closeModal = () => {
     setVisible(false);
+    setView('bars');
     clearData();
   }
 
+  // LOADIMNG STATE
   let modalContent = (
     <>
       <Skeleton active />
