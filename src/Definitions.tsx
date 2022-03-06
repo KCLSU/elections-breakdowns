@@ -1,4 +1,3 @@
-import { Small } from "./StageVotes";
 
 const Definitions = () => (
     <>

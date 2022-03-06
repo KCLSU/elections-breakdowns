@@ -34,7 +34,7 @@ const ModalContainer = styled.div`
 
 function App() {
   const { data, setPostId, loading, error, clearData } = useCountData();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [view, setView] = useState<'table' | 'bars' | 'definitions'>('bars');
 
 
@@ -52,7 +52,6 @@ function App() {
 
   let modalContent = (
     <>
-      <Skeleton active />
       <Skeleton active />
       <Skeleton active />
       <Skeleton active />
