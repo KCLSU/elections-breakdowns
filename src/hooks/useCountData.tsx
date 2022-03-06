@@ -3,19 +3,38 @@ import { MSLCountResponse } from "../types";
 
 type UseCountDataT = {
     setPostId: (id: number) => void;
-    data: MSLCountResponse | null
+    clearData: () => void;
+    data: MSLCountResponse | null;
+    loading: boolean;
+    error: boolean;
 }
 
 const useCountData = (): UseCountDataT => {
-    const [postId, setPostId] = useState<number | null>(3778);
-    const [data, setData] = useState(null)
+    const [postId, setPostId] = useState<number | null>(null);
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     async function fetchData() {
         if (postId) {
-            const result = await (await fetch(`https://www.kclsu.org/svc/voting/elections/164/posts/${postId}/result`)).json();
-            console.log(result)
-            setData(result)
+            setLoading(true);
+            try {
+                const result = await (await fetch(`https://www.kclsu.org/svc/voting/elections/164/posts/${postId}/result`)).json();
+                if (!result) throw new Error();
+                setData(result);
+                setLoading(false);
+            } catch (e) {
+                console.log(e);
+                setError(true);
+                setLoading(false);
+            }
         }
+    }
+
+    function clearData() {
+        setError(false);
+        setPostId(null);
+        setData(null);
     }
 
     useEffect(() => {
@@ -25,7 +44,10 @@ const useCountData = (): UseCountDataT => {
 
     return {
         setPostId,
-        data
+        clearData,
+        data,
+        loading,
+        error
     }
 }
 

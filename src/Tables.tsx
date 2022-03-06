@@ -10,8 +10,6 @@ type TablesProps = {
 const Tables: React.FC<TablesProps> = ({ stages, candidates }) => {
 
     const data = stages.map(stage => {
-        //const excluded = stage.Excluded.join(',');
-        // const elected = stage.Elected.join(',');
         const excluded = stage.Excluded.map(id => {
             const cand = candidates.find(cand => cand.Id === id)
             return cand?.Name

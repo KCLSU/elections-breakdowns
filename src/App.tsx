@@ -33,7 +33,7 @@ const ModalContainer = styled.div`
 
 
 function App() {
-  const { data, setPostId } = useCountData();
+  const { data, setPostId, loading, error, clearData } = useCountData();
   const [visible, setVisible] = useState(true);
   const [view, setView] = useState<'table' | 'bars' | 'definitions'>('bars');
 
@@ -43,8 +43,12 @@ function App() {
       setVisible(true);
       setPostId(+(e.detail))
     })
-
   }, [])
+
+  const closeModal = () => {
+    setVisible(false);
+    clearData();
+  }
 
   let modalContent = (
     <>
@@ -55,7 +59,7 @@ function App() {
     </>
   )
 
-  if (data) {
+  if (data && !loading) {
     modalContent = (
       <Canvas>
         <Header setView={setView}
@@ -72,10 +76,11 @@ function App() {
     )
   }
 
+  if (error) return <p>Unfortunately there was an error fetching this data. Please try again later.</p>
 
   return (
     <ModalContainer>
-      <Modal okText="Back to Results" title="Elections Post Breakdown" width="90%" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
+      <Modal okText="Back to Results" title="Elections Post Breakdown" width="90%" visible={visible} onOk={closeModal} onCancel={closeModal}>
         {modalContent}
       </Modal>
     </ModalContainer>
