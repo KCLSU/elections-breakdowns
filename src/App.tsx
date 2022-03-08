@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { Skeleton } from 'antd';
 import Definitions from './Definitions';
 import { CustomeEventEmitter } from './types';
+import { Small } from './StageVotes';
 
 const Canvas = styled.div`
   padding: 1rem;
@@ -33,7 +34,7 @@ const ModalContainer = styled.div`
 `
 
 function App() {
-  const { data, setPostId, setElectionId, loading, error, clearData } = useCountData();
+  const { data, setPostId, postId, setElectionId, loading, error, clearData } = useCountData();
   const [visible, setVisible] = useState(false);
   const [view, setView] = useState<'table' | 'bars' | 'definitions'>('bars');
 
@@ -66,7 +67,20 @@ function App() {
     </>
   )
 
+  let nusDelegatesNote = null
+
   if (data && !loading) {
+
+    // A CUSTOM NOTE ADDED FOR NUS DELEGATE POSITION
+    if (postId && postId === 3776) {
+      nusDelegatesNote = (
+        <>
+          <Small>** PLEASE NOTE: The 4 women candidates were elected automatically due to the NUS Conference requirement that 50% of delegates (rounded down) must be women or non-binary. KCLSU’s delegate entitlement is 11 this year, which means 5 delegates must be women. The KCLSU President is ex-officio and a woman so takes one of the women spaces which leaves 4 women spaces. Of all the NUS Delegate Candidates we have 4 women, therefore they are automatically elected to fill those spaces.</Small>
+          <br></br>
+        </>
+      )
+    }
+
     modalContent = (
       <Canvas>
         <Header setView={setView}
@@ -76,6 +90,7 @@ function App() {
           totalVote={data.TotalValidVote}
           post={data.Post.Title}
         />
+        {nusDelegatesNote}
         {view === 'table' && <Tables candidates={data.Candidates} stages={data.Stages} />}
         {view === 'bars' && <Bars candidates={data.Candidates} stages={data.Stages} />}
         {view === 'definitions' && <Definitions />}
