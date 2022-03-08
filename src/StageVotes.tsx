@@ -16,7 +16,7 @@ const Flex = styled.div`
     align-items: center;
 `
 export const Small = styled.small`
-    font-size: 13px;
+    font-size: 14px;
     display: block;
     margin: 5px 0;
     span {

@@ -3,6 +3,7 @@ import { MSLCountResponse } from "../types";
 
 type UseCountDataT = {
     setPostId: (id: number) => void;
+    postId: number | null;
     setElectionId: (id: number) => void;
     clearData: () => void;
     data: MSLCountResponse | null;
@@ -47,6 +48,7 @@ const useCountData = (): UseCountDataT => {
 
     return {
         setPostId,
+        postId,
         setElectionId,
         clearData,
         data,
